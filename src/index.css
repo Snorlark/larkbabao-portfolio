@@ -6,6 +6,7 @@
 :root {
   --clr-bg: #fdf9e7;
   --clr-text: #44413c;
+  --clr-bg-accent: #ece7d2;
   --transparent-bg: rgba(127, 108, 80, 0.14);
 
   --font-primary: "Cormorant Garamond", serif;

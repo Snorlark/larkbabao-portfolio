@@ -116,7 +116,7 @@ const Hero: React.FC = () => {
         {/* Second Line: WEB & MOBILE */}
         <BlurText
           text="WEB & MOBILE"
-          delay={250} // Increased delay for sequential animation
+          delay={150} // Increased delay for sequential animation
           animateBy="letters"
           direction="top"
           // FIX: Applied h1's styling and layout classes directly to BlurText's className
@@ -173,7 +173,7 @@ const Hero: React.FC = () => {
               logos={techLogos}
               speed={120}
               direction="left"
-              logoHeight={70}
+              logoHeight={60}
               gap={50}
               pauseOnHover
               ariaLabel="Current Tech Stack"
