@@ -163,7 +163,6 @@ const Hero: React.FC = () => {
 
           <div
             className="w-screen relative"
-            // NOTE: You may need to adjust the negative margin based on your overall layout's padding
             style={{
               marginLeft: "calc(-50vw + 50%)",
               marginRight: "calc(-50vw + 50%)",
