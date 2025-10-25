@@ -123,10 +123,10 @@ const Button: React.FC<ButtonProps> = ({ children, isArrow, href }) => {
   // --- Rendered Component ---
   return (
     <a
-      ref={buttonRef} // Attach ref to the button element
+      ref={buttonRef}
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      target={href.startsWith("#") ? "_self" : "_blank"}
+      rel={href.startsWith("#") ? undefined : "noopener noreferrer"}
       className="
         relative overflow-hidden inline-flex items-center justify-center 
         rounded-full cursor-pointer 

@@ -125,7 +125,7 @@ function Navbar() {
     // Determine the text, link, and content based on the active section
     const getButtonConfig = (sectionId: string) => {
       let text = "CHECK MY CV";
-      let href = "#cv";
+      let href = "https://babao-lark-resume.tiiny.site/";
       let icon = (
         <svg
           viewBox="0 0 24 24"
@@ -142,7 +142,7 @@ function Navbar() {
 
       if (sectionId === "projects") {
         text = "CHECK MY GITHUB";
-        href = "#github";
+        href = "https://github.com/Snorlark";
         // Optional: Change icon to a GitHub logo or file icon if desired
       }
 
@@ -156,6 +156,7 @@ function Navbar() {
 
         setButtonContent(
           <a
+            target="_blank"
             href={config.href}
             // FIXED: Using bracket notation for CSS variables in Tailwind
             className="px-6 py-4 bg-[var(--clr-text)] text-[var(--clr-bg)] rounded-full text-sm font-bold flex items-center shadow-lg hover:opacity-90 transition-opacity"
@@ -213,11 +214,11 @@ function Navbar() {
         style={{ fontFamily: "var(--font-secondary)" }}
       >
         {/* Logo/Branding */}
-        <a href="/" className="w-10 md:w-16 flex items-center">
+        <a href="/" className="w-10 md:w-16 flex items-center ">
           <img
             src="/logo.png"
             alt="Logo"
-            className="object-contain w-10 h-10"
+            className="object-contain w-10 h-10 transition-transform hover:scale-120 focus:scale-120"
           />
         </a>
 

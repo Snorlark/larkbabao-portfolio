@@ -116,7 +116,7 @@ const Hero: React.FC = () => {
         {/* Second Line: WEB & MOBILE */}
         <BlurText
           text="WEB & MOBILE"
-          delay={150} // Increased delay for sequential animation
+          delay={200} // Increased delay for sequential animation
           animateBy="letters"
           direction="top"
           // FIX: Applied h1's styling and layout classes directly to BlurText's className
@@ -147,8 +147,20 @@ const Hero: React.FC = () => {
 
         {/* Call-to-action Buttons */}
         <div className="flex space-x-4 md:space-x-6 justify-center mb-30">
-          <Button children={"SEE MY WORK"} isArrow href="#hello" />
-          <Button children={"CHECK MY CV"} isArrow={false} href="#projects" />
+          <Button
+            children={<a href="#projects">SEE MY WORK</a>}
+            isArrow
+            href="#projects"
+          />
+          <Button
+            children={
+              <a target="blank" href="https://babao-lark-resume.tiiny.site/">
+                CHECK MY CV
+              </a>
+            }
+            isArrow={false}
+            href="https://babao-lark-resume.tiiny.site/"
+          />
         </div>
 
         {/* Current Tech Stack */}
@@ -170,7 +182,7 @@ const Hero: React.FC = () => {
           >
             <LogoLoop
               logos={techLogos}
-              speed={120}
+              speed={70}
               direction="left"
               logoHeight={60}
               gap={50}

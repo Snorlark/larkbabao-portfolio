@@ -28,7 +28,7 @@ const About: React.FC = () => {
             <div className="self-start text-3xl md:text-5xl lg:text-[4rem] leading-none font-primary font-light text-[var(--clr-text)]">
               <span className="italic font-medium">DRIVEN</span> AND
             </div>
-            <div className="self-start italic font-medium text-3xl md:text-5xl lg:text-[4rem] leading-none font-primary text-[var(--clr-text)]">
+            <div className="self-end italic font-medium text-3xl md:text-5xl lg:text-[4rem] leading-none font-primary text-[var(--clr-text)]">
               ADAPTABLE
             </div>
           </div>
