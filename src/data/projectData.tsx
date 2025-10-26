@@ -2,7 +2,12 @@
 
 import type { ReactNode } from "react";
 
-export type ProjectType = "Website" | "Mobile" | "UI Designs" | "Desktop App";
+export type ProjectType =
+  | "Website"
+  | "Mobile"
+  | "UI Designs"
+  | "Desktop App"
+  | "UI Designs";
 export type ProjectTag =
   | "JavaScript"
   | "ReactJS"
@@ -37,33 +42,41 @@ export interface ProjectData {
 
 export const ALL_PROJECTS: ProjectData[] = [
   {
-    id: "maize-watch",
+    id: "maize-watch-web",
     type: "Website",
-    title: "MAIZE WATCH",
+    title: "MAIZE WATCH DASHBOARD",
     description:
-      "A full-stack maize crop monitoring system featuring Admin, Mobile (farmers) and Web Dashboard (analysts). Built RESTful APIs with Express.js & MongoDB for real-time analytics.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1595526113807-713f1b8803e1?auto=format&fit=crop&w=1200&q=80",
-    // Real photo of maize/field from Unsplash
+      "A web-based monitoring and analytics dashboard for the MAIZE WATCH IoT system. Provides real-time sensor data visualization, prescriptive analytics, and role-based access for analysts and staff using React, Node.js, and Firebase.",
+    imageSrc: "projects/maize-watch-mobile.png",
     technologies: [
       "ReactJS",
       "ExpressJS",
       "Node.js",
       "MongoDB",
-      "Flutter",
       "Tailwind CSS",
+      "Firebase",
     ],
-    liveLink: "https://maize-watch.vercel.app/",
+    liveLink: "https://maize-watch.com",
     githubLink: "https://github.com/Snorlark/Maize-Watch",
   },
   {
-    id: "fakebook",
+    id: "maize-watch-mobile",
     type: "Mobile",
-    title: "FAKEBOOK",
+    title: "MAIZE WATCH",
+    description:
+      "Maize Watch is a real-time app, IoT-powered monitoring and analytics system developed to support corn farmers in optimizing crop yield, improving sustainability, and making data-driven agricultural decisions. It collects field data through sensors and provides actionable insights using machine learning.",
+    imageSrc: "projects/maize-watch-mobile.png",
+    technologies: ["Flutter", "Firebase", "Node.js"],
+    githubLink: "https://github.com/Snorlark/Maize-Watch",
+  },
+
+  {
+    id: "just-a-sec",
+    type: "Mobile",
+    title: "JUST A SEC",
     description:
       "A Facebook UI replication built in Flutter. Features responsive layouts, carousel sliders, and network image caching for an interactive social-app experience.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1590608897129-79e263bc867a?auto=format&fit=crop&w=1200&q=80",
+    imageSrc: "projects/maize-watch-mobile.png",
     // Real photo of smartphone / social apps from Unsplash
     technologies: ["Flutter"],
     githubLink: "https://github.com/Snorlark/Facebook-Replication",
@@ -74,8 +87,7 @@ export const ALL_PROJECTS: ProjectData[] = [
     title: "METAMATCH",
     description:
       "A component-comparison platform helping users choose PC parts by features, price, and compatibility. Built with PHP backend and ApacheDB integration.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
+    imageSrc: "projects/maize-watch-mobile.png",
     // Real tech/PC build image from Unsplash
     technologies: ["HTML", "CSS", "PHP", "JavaScript"],
     githubLink: "https://github.com/Snorlark/MetaMatch/tree/main",
@@ -86,8 +98,7 @@ export const ALL_PROJECTS: ProjectData[] = [
     title: "PALAWAN TOUR",
     description:
       "A responsive tourism website showcasing Palawan’s natural beauty, top destinations and travel tips. Focused on mobile-first layout and accessibility.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1549643492-14d9b6a4d681?auto=format&fit=crop&w=1200&q=80",
+    imageSrc: "projects/maize-watch-mobile.png",
     // Real Palawan / beach tourism photo from Unsplash
     technologies: ["HTML", "CSS", "JavaScript"],
     liveLink: "https://snorlark.github.io/Palawan-Tour/index.html",
@@ -99,8 +110,7 @@ export const ALL_PROJECTS: ProjectData[] = [
     title: "SINAGTALA EVENT",
     description:
       "An interactive event-management web app for planning, scheduling and participant tracking. Designed with smooth UI animations and JavaScript interactivity.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1521271069518-4aca040bd7b9?auto=format&fit=crop&w=1200&q=80",
+    imageSrc: "projects/maize-watch-mobile.png",
     // Real event planning image from Unsplash
     technologies: ["HTML", "CSS", "JavaScript"],
     liveLink: "https://snorlark.github.io/Sinagtala-Event-Management/",
@@ -109,11 +119,10 @@ export const ALL_PROJECTS: ProjectData[] = [
   {
     id: "touchmydeck",
     type: "Mobile",
-    title: "TouchMyDeck",
+    title: "TOUCH MY DECK",
     description:
       "A logic-based card-sorting Android game focused on decision-making & categorization. Integrated Firebase for authentication & real-time cloud data.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1516318561162-f2e4251b5908?auto=format&fit=crop&w=1200&q=80",
+    imageSrc: "projects/maize-watch-mobile.png",
     // Real mobile game / cards photo from Unsplash
     technologies: ["Android Studio", "Firebase"],
     githubLink: "https://github.com/Snorlark/TouchMyDeck",
@@ -121,11 +130,21 @@ export const ALL_PROJECTS: ProjectData[] = [
   {
     id: "filodroids",
     type: "Desktop App",
-    title: "FiloDroids",
+    title: "FILODROIDS",
     description:
       "A culturally themed desktop application where users select & customise Filipino robot avatars based on regions and heritage. Built with JavaFX & SceneBuilder.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1551817958-202eeecd1f9f?auto=format&fit=crop&w=1200&q=80",
+    imageSrc: "projects/maize-watch-mobile.png",
+    // Real robot/technology themed image from Unsplash
+    technologies: ["JavaFX", "SceneBuilder"],
+    githubLink: "https://github.com/Snorlark/FiloDroids",
+  },
+  {
+    id: "refurnish",
+    type: "Website",
+    title: "REFURNISH",
+    description:
+      "A culturally themed desktop application where users select & customise Filipino robot avatars based on regions and heritage. Built with JavaFX & SceneBuilder.",
+    imageSrc: "projects/maize-watch-mobile.png",
     // Real robot/technology themed image from Unsplash
     technologies: ["JavaFX", "SceneBuilder"],
     githubLink: "https://github.com/Snorlark/FiloDroids",

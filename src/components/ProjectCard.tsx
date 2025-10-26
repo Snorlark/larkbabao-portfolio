@@ -1,6 +1,8 @@
 // components/ProjectCard.tsx
 import React from "react";
 import type { ProjectData } from "../data/projectData";
+import { ArrowUpRight } from "lucide-react"; // Import the ArrowUpRight icon
+import FadeContent from "./FadeContent";
 
 interface ProjectCardProps {
   project: ProjectData;
@@ -8,54 +10,84 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
-    <div className="flex flex-col bg-transparent p-4">
-      {/* Project Image/Preview */}
-      <div className="relative overflow-hidden aspect-[4/3] rounded-lg mb-4">
-        {/* Using a placeholder for the image structure shown in the screenshot */}
-        <img
-          src={project.imageSrc}
-          alt={`Preview of ${project.title}`}
-          className="w-full h-full object-cover"
-        />
-        {/* Example of the small arrow/link button on the image */}
-        <a
-          href={project.liveLink || project.githubLink || "#"}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute bottom-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-white bg-opacity-80 transition-opacity hover:opacity-100"
-          aria-label={`View ${project.title}`}
-        >
-          <svg
-            className="w-5 h-5 text-gray-800"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+    // 1. Main Card Container Styling (Keeping the original grid card style)
+    <div
+      className="flex flex-col rounded-3xl overflow-hidden duration-300"
+      style={{
+        backgroundColor: "var(--clr-bg-accent)", // The light beige/off-white background for the card
+      }}
+    >
+      <div className="relative w-full h-[250px] flex items-start justify-center rounded-t-3xl overflow-hidden pt-4 bg-(--clr-bg-secondary)">
+        <div className="w-[195px] h-[375px] rounded-2xl overflow-hidden shadow-xl transition-transform duration-500 hover:scale-[1.03]">
+          {/* Increased w and h for a slightly larger phone mockup */}
+          <img
+            src={project.imageSrc}
+            alt={project.title}
+            className="w-full h-full object-cover object-top "
+            loading="lazy"
+          />
+        </div>
+      </div>
+      {/* 3. Content Area */}
+
+      <div className="flex justify-between items-start mb-1 px-6 mt-4">
+        {" "}
+        {/* items-start to align the text to the top */}
+        <div className="flex flex-col flex-grow">
+          {" "}
+          {/* Group Type and Title for better flow */}
+          {/* Type (e.g., MOBILE, WEBSITE) */}
+          <p
+            className="text-xs tracking-widest uppercase text-[var(--clr-text)]/80"
+            style={{ fontFamily: "var(--font-secondary)" }}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M14 5l7 7m0 0l-7 7m7-7H3"
-            ></path>
-          </svg>
-        </a>
+            {project.type}
+          </p>
+          {/* Title */}
+          <h3 className="text-2xl font-bold text-[var(--clr-text)] leading-snug">
+            {project.title}
+          </h3>
+        </div>
+        {/* 4. Action Button (MOVED HERE: Next to the Type/Title block) */}
+        {(project.liveLink || project.githubLink) && (
+          <a
+            href={project.liveLink || project.githubLink || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            // Use w-10 h-10 for the larger, more prominent button size
+            className="w-10 h-10 flex flex-shrink-0 items-center justify-center rounded-full transition-all duration-300 ml-4"
+            style={{
+              backgroundColor: "var(--clr-text)", // Dark background color
+              marginTop: "4px", // Small adjustment to align with the text block
+            }}
+            aria-label={`View ${project.title}`}
+          >
+            <ArrowUpRight
+              className="w-6 h-6"
+              style={{ color: "var(--clr-bg-accent)" }}
+            />
+          </a>
+        )}
       </div>
 
-      {/* Title and Description */}
-      <h3 className="text-2xl font-primary font-medium text-[var(--clr-text)] mb-2">
-        {project.title}
-      </h3>
-      <p className="text-sm text-[var(--clr-text-secondary)] mb-4">
+      {/* Description */}
+      <p className="text-base text-[var(--clr-text-secondary)] leading-relaxed px-6 mb-4 mt-3">
+        {" "}
+        {/* Added mt-3 for spacing from title */}
         {project.description}
       </p>
 
       {/* Technologies/Tags */}
-      <div className="flex flex-wrap gap-2 text-xs font-medium">
-        {project.technologies.map((tech) => (
+      <div className="flex flex-wrap gap-2 text-xs font-medium mt-auto px-6 mb-4">
+        {project.technologies.slice(0, 4).map((tech) => (
           <span
             key={tech}
-            className="px-3 py-1 rounded-full border border-[var(--clr-text-secondary)] text-[var(--clr-text-secondary)]"
+            className="px-3 py-1 rounded-full uppercase text-xs font-medium tracking-wide"
+            style={{
+              backgroundColor: "var(--clr-bg)",
+              color: "var(--clr-text-secondary)",
+              border: "1px solid var(--clr-text-secondary)",
+            }}
           >
             {tech}
           </span>

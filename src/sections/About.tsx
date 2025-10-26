@@ -64,7 +64,7 @@ const About: React.FC = () => {
                 {/* Tilted card sits *above* the overlay */}
                 <div className="relative z-[2] flex justify-center items-center">
                   <TiltedCard
-                    imageSrc="/about/profile.png"
+                    imageSrc="/about/profile.jpeg"
                     altText="Lark Babao Profile"
                     captionText="Yup, that's me ^_^"
                     containerHeight="420px"
@@ -119,7 +119,7 @@ const About: React.FC = () => {
                     to={6}
                     separator=","
                     direction="up"
-                    duration={1}
+                    duration={5}
                     className="count-up-text"
                   />
                 </span>
@@ -145,7 +145,7 @@ const About: React.FC = () => {
                     to={13}
                     separator=","
                     direction="up"
-                    duration={1}
+                    duration={5}
                     className="count-up-text"
                   />
                 </span>
@@ -171,7 +171,7 @@ const About: React.FC = () => {
                     to={3}
                     separator=","
                     direction="up"
-                    duration={1}
+                    duration={5}
                     className="count-up-text"
                   />
                 </span>
@@ -197,7 +197,7 @@ const About: React.FC = () => {
                     to={15}
                     separator=","
                     direction="up"
-                    duration={1}
+                    duration={5}
                     className="count-up-text"
                   />
                 </span>

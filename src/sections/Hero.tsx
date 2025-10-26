@@ -88,7 +88,7 @@ const Hero: React.FC = () => {
         <img
           src="/hero/hero-chips.png"
           alt="Hero Chips"
-          className="w-40 h-auto object-contain"
+          className="w-35 h-auto object-contain"
         />
 
         {/* Location */}
@@ -187,6 +187,7 @@ const Hero: React.FC = () => {
               logoHeight={60}
               gap={50}
               pauseOnHover
+              scaleOnHover
               ariaLabel="Current Tech Stack"
               // FIX: Set w-full on the LogoLoop itself (its content will be 100% of the w-screen wrapper)
               className="w-full h-20 relative overflow-hidden mt-4"

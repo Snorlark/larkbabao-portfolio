@@ -1,139 +1,126 @@
 import React, { useMemo } from "react";
 import { LogoLoop, type LogoItem } from "./LogoLoop";
-import { ALL_PROJECTS, type ProjectData } from "../data/projectData";
+import { type ProjectData } from "../data/projectData";
+import { ArrowUpRight } from "lucide-react";
+
+interface ProjectLoopProps {
+  projects: ProjectData[]; // Accepts an array of ProjectData
+}
 
 const LoopItemContent: React.FC<{ project: ProjectData }> = ({ project }) => {
   return (
     <div
-      className="flex flex-col w-[260px] h-[480px] p-2 rounded-4xl cursor-pointer"
+      className="flex flex-col justify-between w-[270px] h-[440px] rounded-3xl overflow-hidden duration-300 relative" // Added 'relative' for absolute positioning of the gradient
       style={{
-        backgroundColor: "var(--clr-bg-accent)",
-        fontFamily: "var(--font-primary)",
+        backgroundColor: "var(--clr-bg-accent)", // The light beige/off-white background
         flexShrink: 0,
       }}
     >
-      {/* Image - Fixed height */}
-      <div className="relative h-[250px] overflow-hidden w-full rounded-3xl mb-4 flex-shrink-0 bg-[var(--clr-bg)]">
-        <img
-          src={project.imageSrc}
-          alt={project.title}
-          className="w-full h-full object-cover"
-          onError={(e) => {
-            e.currentTarget.style.display = "none";
-          }}
-        />
-      </div>
-
-      {/* Content Section - Fixed layout */}
-      <div className="flex flex-col flex-grow px-4 py-3 min-h-0">
-        {/* Title section - Fixed height */}
-        <div className="mb-2 flex-shrink-0">
-          <h1 className="text-xl font-bold text-[var(--clr-text)] tracking-wide line-clamp-1 min-h-[1.75rem]">
+      {/* Content */}
+      <div className="flex flex-col justify-between flex-grow px-4 py-3 mt-5">
+        <p
+          className="text-xs tracking-widest uppercase text-[var(--clr-text)]/80 "
+          style={{ fontFamily: "var(--font-secondary)" }}
+        >
+          {project.type}
+        </p>
+        <div>
+          <h1 className="text-xl font-bold text-[var(--clr-text)] leading-snug mt-1 mb-4">
             {project.title}
           </h1>
-          <p
-            className="text-xs tracking-widest uppercase text-[var(--clr-text-secondary)] mt-1 mb-3"
-            style={{ fontFamily: "var(--font-secondary)" }}
-          >
-            {project.type}
-          </p>
         </div>
 
-        {/* Tech Stack - Fixed height area */}
-        <div className="flex flex-wrap gap-2 text-xs font-semibold mb-3 flex-shrink-0 min-h-[3.5rem]">
+        {/* Tech Stack */}
+
+        <div className="flex flex-wrap gap-2 text-sm font-semibold mb-4">
           {project.technologies.slice(0, 4).map((tech) => (
             <span
               key={tech}
-              className="text-base px-3 py-1 rounded-full bg-[var(--clr-bg)] text-[var(--clr-text-secondary)] h-fit"
+              className="px-3 py-1 rounded-full bg-[var(--clr-bg)] text-[var(--clr-text)] text-sm font-medium tracking-wide"
+              style={{
+                backgroundColor: "var(--clr-bg)", // Assuming a slightly different color for the tech stack background
+              }}
             >
               {tech}
             </span>
           ))}
         </div>
 
-        {/* Buttons - Push to bottom */}
-        <div className="flex justify-end mt-auto">
-          <div className="flex gap-2 justify-center items-end mb-1">
-            {project.githubLink && (
-              <a
-                href={project.githubLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300 hover:opacity-90"
-                style={{ backgroundColor: "var(--clr-text)" }}
-                aria-label={`View ${project.title} on GitHub`}
-              >
-                <svg
-                  className="w-5 h-5"
-                  viewBox="0 0 44 44"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12.8334 31.1666L31.1667 12.8333M31.1667 12.8333H12.8334M31.1667 12.8333V31.1666"
-                    stroke="var(--clr-bg-accent)"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </a>
-            )}
-
-            {project.liveLink && (
-              <a
-                href={project.liveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300 hover:opacity-90"
-                style={{ backgroundColor: "var(--clr-text)" }}
-                aria-label={`View ${project.title} live`}
-              >
-                <svg
-                  className="w-5 h-5"
-                  viewBox="0 0 44 44"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12.8334 31.1666L31.1667 12.8333M31.1667 12.8333H12.8334M31.1667 12.8333V31.1666"
-                    stroke="var(--clr-bg-accent)"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </a>
-            )}
+        {/* Image and the Button container */}
+        <div className="flex justify-between items-end mt-auto z-10">
+          {" "}
+          {/* Added z-10 to keep the button and image above the gradient */}
+          {/* Image Section */}
+          <div className="relative w-full h-[220px] flex items-end justify-start rounded-t-3xl overflow-visible">
+            {/* The inner phone frame wrapper */}
+            <div className="w-[195px] h-[375px] rounded-2xl overflow-hidden shadow-xl absolute bottom-[-150px] left-[-35px]">
+              <img
+                src={project.imageSrc}
+                alt={project.title}
+                // Object-cover and object-top are good for the image itself
+                className="w-full h-full object-cover object-top "
+                loading="lazy"
+              />
+            </div>
           </div>
+          {/* Button Section */}
+          {/* Assuming you want the button to link to the live project (liveLink) or GitHub (githubLink) */}
+          {(project.liveLink || project.githubLink) && (
+            <a
+              href={project.liveLink || project.githubLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-shrink-0 items-center justify-center rounded-full transition-all duration-300 hover:scale-110 hover:bg-[var(--clr-text-secondary)]"
+              style={{
+                width: "42px",
+                height: "42px",
+                backgroundColor: "var(--clr-text)",
+              }}
+            >
+              <ArrowUpRight
+                className="w-5 h-5"
+                style={{ color: "var(--clr-bg-accent)" }}
+              />
+            </a>
+          )}
         </div>
       </div>
+
+      {/* Linear Gradient at the very bottom */}
+      <div
+        className="absolute bottom-0 left-0 w-full h-1/3 rounded-b-3xl"
+        style={{
+          background: `linear-gradient(to top, rgba(96, 94, 87, 1) 0%, rgba(198, 194, 179, 0) 100%)`,
+          // Dark color #605E57 is at 0% (bottom of the band)
+          // Light color #C6C2B3 is at 100% (top of the band) and made transparent (alpha 0)
+        }}
+      ></div>
     </div>
   );
 };
 
-const ProjectLoop: React.FC = () => {
+const ProjectLoop: React.FC<ProjectLoopProps> = ({ projects }) => {
   const loopItems: LogoItem[] = useMemo(() => {
-    return ALL_PROJECTS.map((p) => ({
+    // 💡 FIX 4: Use the 'projects' prop instead of ALL_PROJECTS
+    return projects.map((p) => ({
       node: <LoopItemContent project={p} />,
       href: p.liveLink || p.githubLink,
       title: p.title,
     }));
-  }, []);
+  }, [projects]);
+
+  if (projects.length === 0) {
+    return (
+      <div className="text-center text-[var(--clr-text-secondary)] py-10">
+        No projects found for this category.
+      </div>
+    );
+  }
 
   return (
-    <div className="w-full">
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        .project-loop-container ul {
-          align-items: flex-start !important;
-        }
-      `,
-        }}
-      />
+    <div className="flex flex-col justify-center items-center w-full">
       <div
-        className="w-screen"
+        className="w-screen relative"
         style={{
           marginLeft: "calc(-50vw + 50%)",
           marginRight: "calc(-50vw + 50%)",
@@ -141,13 +128,13 @@ const ProjectLoop: React.FC = () => {
       >
         <LogoLoop
           logos={loopItems}
-          speed={50}
+          speed={45}
           direction="right"
-          gap={20}
+          gap={32}
           pauseOnHover
           fadeOut={true}
           fadeOutColor="var(--clr-background)"
-          className="w-full h-[480px] overflow-hidden project-loop-container"
+          className="w-full h-[440px] relative overflow-hidden mt-6"
           ariaLabel="Showcase of project previews"
         />
       </div>

@@ -128,21 +128,31 @@ function Navbar() {
       let href = "https://babao-lark-resume.tiiny.site/";
       let icon = (
         <svg
-          viewBox="0 0 24 24"
+          viewBox="0 0 44 44"
           fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          className="w-5 h-4"
+          color="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
+          <path
+            d="M12.8334 31.1666L31.1667 12.8333M31.1667 12.8333H12.8334M31.1667 12.8333V31.1666"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
       );
 
       if (sectionId === "projects") {
         text = "CHECK MY GITHUB";
         href = "https://github.com/Snorlark";
+        // Optional: Change icon to a GitHub logo or file icon if desired
+      }
+
+      if (sectionId === "journey") {
+        text = "CONNECT ON LINKEDIN";
+        href = "https://www.linkedin.com/in/lark-sigmuond-babao-9a8a012b2/";
         // Optional: Change icon to a GitHub logo or file icon if desired
       }
 

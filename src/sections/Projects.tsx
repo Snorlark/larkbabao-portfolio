@@ -21,7 +21,7 @@ const Projects: React.FC = () => {
         >
           MY PROJECTS
         </p>
-        <div className="mb-8 leading-tight">
+        <div className="mb-15 leading-tight">
           <div className="self-start text-3xl md:text-5xl lg:text-[4rem] leading-none font-primary font-light text-[var(--clr-text)]">
             <span className="italic font-medium">DESIGNS</span> AND
           </div>
