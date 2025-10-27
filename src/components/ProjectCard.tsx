@@ -26,7 +26,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   // Position: Absolute for phone (to push it out), relative/static for website (to keep it centered).
   const imageWrapperPositioning = isMobile
     ? "absolute bottom-[-150px]"
-    : "absolute bottom-[-30px]";
+    : "absolute bottom-[-20px]";
 
   // 💡 FIX 2: Container class for non-mobile to constrain the image area to text padding
   const imageContainerPadding = isMobile ? "" : "px-6";
@@ -72,14 +72,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         {/* ... (Content remains the same) ... */}
         <div className="flex flex-col flex-grow">
           <p
-            className="text-xs tracking-widest uppercase text-[var(--clr-text)]/80"
+            className="text-xs tracking-widest uppercase text-[var(--clr-text)]/80 "
             style={{ fontFamily: "var(--font-secondary)" }}
           >
             {project.type}
           </p>
-          <h3 className="text-2xl font-bold text-[var(--clr-text)] leading-snug">
-            {project.title}
-          </h3>
+          <div>
+            <h1 className="text-2xl font-bold text-[var(--clr-text)] leading-snug mt-1 mb-4">
+              {project.title}
+            </h1>
+          </div>
         </div>
         {/* 4. Action Button */}
         {project.githubLink && (
@@ -87,14 +89,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             href={project.githubLink || "#"}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 flex flex-shrink-0 items-center justify-center rounded-full transition-all duration-300 ml-4"
+            className="w-10 h-10 flex flex-shrink-0 items-center justify-center rounded-full hover:opacity-80 hover:scale-110 transition-all duration-300 ml-4"
             style={{
               backgroundColor: "var(--clr-text)",
               marginTop: "4px",
             }}
             aria-label={`View ${project.title}`}
           >
-            <Code className="w-4 h-4 text-(--clr-bg-accent) hover:scale-105 transition-all duration-300" />
+            <Code className="w-4 h-4 text-(--clr-bg-accent)" />
           </a>
         )}
         {project.liveLink && (
@@ -102,7 +104,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             href={project.liveLink || "#"}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 flex flex-shrink-0 items-center justify-center rounded-full transition-all duration-300 ml-4"
+            className="w-10 h-10 flex flex-shrink-0 items-center justify-center rounded-full  hover:opacity-80 hover:scale-110 transition-all duration-300 ml-4"
             style={{
               backgroundColor: "var(--clr-text)",
               marginTop: "4px",
@@ -118,7 +120,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       </div>
 
       {/* Description */}
-      <p className="text-base text-[var(--clr-text-secondary)] leading-relaxed px-6 mb-4 mt-3">
+      <p className="text-base text-(--clr-text) text-justify font-medium leading-snug paraga px-6 mb-4 mt-3">
         {project.description}
       </p>
 
@@ -127,7 +129,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         {project.technologies.slice(0, 4).map((tech) => (
           <span
             key={tech}
-            className="px-3 py-1 rounded-full uppercase text-xs font-medium tracking-wide"
+            className="px-3 py-1 rounded-full text-xs font-bold uppercase"
             style={{
               backgroundColor: "var(--clr-bg)",
               color: "var(--clr-text-secondary)",

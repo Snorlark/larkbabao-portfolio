@@ -126,12 +126,12 @@ const Contact: React.FC<{ isFixedBackground?: boolean }> = ({
                 <div className="flex items-start md:items-center space-x-4 mb-4 md:mb-0">
                   <img
                     src="/logo-light.png" // Assumed inverted logo for dark background
-                    alt="Lark Sigmuond Babao Logo"
+                    alt="Lark Babao Logo"
                     className="w-10 h-10 object-contain"
                   />
                   <div className="flex flex-col text-xs">
                     <p className="text-base font-bold italic uppercase">
-                      LARK SIGMUOND BABAO
+                      LARK BABAO
                     </p>
                     <p
                       className="text-[10px] opacity-50 font-medium tracking-widest uppercase"

@@ -62,11 +62,11 @@ const LoopItemContent: React.FC<{ project: ProjectData }> = ({ project }) => {
         </div>
 
         {/* Tech Stack */}
-        <div className="flex flex-wrap gap-2 text-sm font-semibold mb-4">
+        <div className="flex flex-wrap gap-2  mb-4">
           {project.technologies.slice(0, 4).map((tech) => (
             <span
               key={tech}
-              className="px-3 py-1 rounded-full bg-[var(--clr-bg)] text-[var(--clr-text)] text-sm font-medium tracking-wide"
+              className="px-3 py-1 rounded-full bg-[var(--clr-bg)] text-[var(--clr-text)] text-xs font-bold uppercase"
               style={{
                 backgroundColor: "var(--clr-bg)",
               }}

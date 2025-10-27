@@ -1,4 +1,4 @@
-export type ProjectType = "Website" | "Mobile" | "UI Designs" | "Desktop App";
+export type ProjectType = "Website" | "Mobile" | "UI Design" | "Desktop App";
 
 export type ProjectTag =
   | "JavaScript"
@@ -89,6 +89,7 @@ export const ALL_PROJECTS: ProjectData[] = [
       "Tailwind CSS",
     ],
     githubLink: "https://github.com/Snorlark/Refurnish",
+    liveLink: "https://refurnish-blond.vercel.app/",
   },
   {
     id: "just-a-sec",
@@ -106,7 +107,7 @@ export const ALL_PROJECTS: ProjectData[] = [
     title: "SINAGTALA EVENT MANAGEMENT",
     description:
       "An interactive event-management web application for planning, scheduling and participant tracking. Group project for Web Development course, featuring smooth UI animations and JavaScript interactivity with a clean, responsive design.",
-    imageSrc: "projects/sinagtala.png",
+    imageSrc: "projects/sinagtala-event-management.png",
     technologies: ["HTML", "CSS", "JavaScript"],
     liveLink: "https://snorlark.github.io/Sinagtala-Event-Management/",
     githubLink: "https://github.com/Snorlark/Sinagtala-Event-Management",
@@ -143,16 +144,6 @@ export const ALL_PROJECTS: ProjectData[] = [
     githubLink: "https://github.com/Snorlark/Palawan-Tour",
   },
   {
-    id: "votingapp",
-    type: "Mobile",
-    title: "VOTING APP",
-    description:
-      "An Android digital voting application with secure Firebase authentication and real-time vote tracking. Features user sign-in/sign-up, candidate viewing, vote confirmation, and automated receipt generation. Stores vote data securely in Firebase Realtime Database.",
-    imageSrc: "projects/votingapp.png",
-    technologies: ["Android Studio", "Firebase"],
-    githubLink: "https://github.com/Snorlark/VotingApp",
-  },
-  {
     id: "metamatch",
     type: "Website",
     title: "METAMATCH",
@@ -161,5 +152,71 @@ export const ALL_PROJECTS: ProjectData[] = [
     imageSrc: "projects/metamatch.png",
     technologies: ["HTML", "CSS", "JavaScript", "PHP"],
     githubLink: "https://github.com/Snorlark/MetaMatch",
+  },
+  {
+    id: "childrens-farm",
+    type: "UI Design",
+    title: "CHILDREN'S FARM",
+    description:
+      "A fun and vibrant UI/UX design for a children's farm and party venue. The design features a playful green and yellow color palette, clear Call-to-Action (CTA) buttons for party bookings and tickets, and engaging sections showcasing animal encounters and farm activities. Created to be highly visual and conversion-focused.",
+    imageSrc: "projects/childrens-farm.png",
+    technologies: ["Figma"],
+    liveLink:
+      "https://www.figma.com/design/ksLuCBGsgqE6TYnjynHfaF/Children-s-Farm?node-id=2-2&t=N6fsNadD4il4gBPx-1",
+  },
+  {
+    id: "e-theneum",
+    type: "UI Design",
+    title: "E-THENEUM",
+    description:
+      "A dark-themed UI/UX design for a digital library and academic resource platform. Features include clear sections for Books, Researches, and Dissertations, a dedicated search bar, a rotating carousel for featured collections (like 'Works of Rizal'), and categories spanning Law, History, and Business. The design aims for a modern, sophisticated, and academic aesthetic.",
+    imageSrc: "projects/e-theneum.png",
+    technologies: ["Figma"],
+    liveLink:
+      "https://www.figma.com/design/IU2fdnLDYxhvKqXzDqWT90/E-Theneum?node-id=0-1&t=QPXYuoYdVjr4dijF-1",
+  },
+  {
+    id: "ecodex",
+    type: "UI Design",
+    title: "ECODEX",
+    description:
+      "A mobile UI/UX design for EcoDex, a plant recognition and discovery app. This project won and Placed as Top Team out of 6+ teams in the Google Developers Club Ideathon Manila 2024. The design features a nature-inspired, monochromatic green color palette, and core functionalities including a Tree & Plant Recognition Scanner, a Garden management section, and detailed PlantDex information pages.",
+    imageSrc: "projects/ecodex.png",
+    technologies: ["Figma"],
+    liveLink:
+      "https://www.figma.com/design/XIIhFIzAF9At8GERnL4JDh/EcoDex?node-id=0-1&t=PWMnhrzMzf9YMVyD-1",
+  },
+  {
+    id: "gupet",
+    type: "UI Design",
+    title: "GUPET",
+    description:
+      "A dark-mode mobile UI/UX design for GUPET, a barbershop appointment and style discovery app. The design features a sleek, monochromatic aesthetic with custom illustrations. Key screens include user authentication (Sign Up/Log In), a style selector page with various haircut options (e.g., Permed-Afro, Mullet), and detailed view screens for exploring and booking a specific hairstyle.",
+    imageSrc: "projects/gupet.png",
+    technologies: ["Figma"],
+    liveLink:
+      "https://www.figma.com/design/1KxEZa7wTiWT1pTEbb3KAB/Gupet?node-id=0-1&t=GioNSVAIOevf3p5H-1",
+  },
+  {
+    id: "hoppin",
+    type: "UI Design",
+    title: "HOPPIN",
+    description:
+      "A mobile UI/UX design for HOPPIn, a ride-hailing and package delivery application. I led an 8-person team to secure participation in the INVENTURE National University Campus-Wide Pitching Competition with this project. The design features a bold red and white color palette, allowing users to compare and select services from different providers (like MOVE IT and Grab) based on price and speed, along with a live map for tracking trips.",
+    imageSrc: "projects/hoppin.png",
+    technologies: ["Figma"],
+    liveLink:
+      "https://www.figma.com/design/iWDld1EnxBcNvjRt44rXLE/HOPPin?node-id=4-9&t=SGVhzEtZDvuSzN0s-1",
+  },
+  {
+    id: "morning-brew",
+    type: "UI Design",
+    title: "MORNING BREW",
+    description:
+      "A sophisticated and minimalist UI design for the Morning Brew coffee shop website. The design utilizes a dark, moody aesthetic with high-quality photography to evoke a warm, cozy atmosphere. Key features include a clear navigation bar (About, Menu, Gallery, Contact), a subtle dark/light mode toggle, and a focused call-to-action inviting users to 'Start Your Day Right' and 'Brew Now.'",
+    imageSrc: "projects/morning-brew.png",
+    technologies: ["Figma"],
+    liveLink:
+      "https://www.figma.com/design/uXT7HfHaLzmPkOqar4Uiqo/morning-brew.?node-id=1-23&t=tXyqZ08oy1QYeK5Y-1",
   },
 ];
