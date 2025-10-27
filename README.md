@@ -33,10 +33,10 @@
     <img src="public/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h4 align="center">Lark Babao Portfolio</h4>
+  <h1 align="center">Lark Babao's Portfolio</h1>
 
   <p align="center">
-    A modern, interactive portfolio showcasing full-stack development projects and professional journey
+    Hi! This is my modern, interactive portfolio showcasing my full-stack development projects and professional journey
     <br />
     <a href="https://snorlark.github.io/larkbabao-portfolio/"><strong>View Live Demo »</strong></a>
     <br />
