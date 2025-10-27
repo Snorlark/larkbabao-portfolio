@@ -33,7 +33,7 @@
     <img src="public/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h5 align="center">Lark Babao Portfolio</h3>
+  <h4 align="center">Lark Babao Portfolio</h4>
 
   <p align="center">
     A modern, interactive portfolio showcasing full-stack development projects and professional journey
@@ -347,7 +347,7 @@ Use this space to list resources you find helpful and would like to give credit 
 [license-url]: https://github.com/Snorlark/larkbabao-portfolio/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/lark-sigmuond-babao-9a8a012b2/
-[product-screenshot]: portfolio-screenshot.png
+[product-screenshot]: public/portfolio-screenshot.png
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 [TypeScript]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
