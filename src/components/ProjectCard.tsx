@@ -2,7 +2,6 @@
 import React from "react";
 import type { ProjectData } from "../data/projectData";
 import { ArrowUpRight } from "lucide-react"; // Import the ArrowUpRight icon
-import FadeContent from "./FadeContent";
 
 interface ProjectCardProps {
   project: ProjectData;

@@ -64,7 +64,6 @@ class ImageItem {
 
 class ImageTrailVariant1 {
   private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -78,7 +77,6 @@ class ImageTrailVariant1 {
 
   constructor(container: HTMLDivElement) {
     this.container = container;
-    this.DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement)
     );
@@ -181,8 +179,6 @@ class ImageTrailVariant1 {
 }
 
 class ImageTrailVariant2 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -195,8 +191,6 @@ class ImageTrailVariant2 {
   private cacheMousePos: { x: number; y: number };
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement)
     );
@@ -311,8 +305,6 @@ class ImageTrailVariant2 {
 }
 
 class ImageTrailVariant3 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -325,8 +317,6 @@ class ImageTrailVariant3 {
   private cacheMousePos: { x: number; y: number };
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement)
     );
@@ -444,8 +434,6 @@ class ImageTrailVariant3 {
 }
 
 class ImageTrailVariant4 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -458,8 +446,6 @@ class ImageTrailVariant4 {
   private cacheMousePos: { x: number; y: number };
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement)
     );
@@ -597,8 +583,6 @@ class ImageTrailVariant4 {
 }
 
 class ImageTrailVariant5 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -612,8 +596,6 @@ class ImageTrailVariant5 {
   private lastAngle: number;
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement)
     );
@@ -742,8 +724,6 @@ class ImageTrailVariant5 {
 }
 
 class ImageTrailVariant6 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -756,8 +736,6 @@ class ImageTrailVariant6 {
   private cacheMousePos: { x: number; y: number };
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement)
     );
@@ -912,8 +890,6 @@ function getNewPosition(position: number, offset: number, arr: ImageItem[]) {
 }
 
 class ImageTrailVariant7 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -928,8 +904,6 @@ class ImageTrailVariant7 {
   private visibleImagesTotal: number;
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement)
     );
@@ -1242,12 +1216,12 @@ export default function ImageTrail({
 
   return (
     <div
-      className="w-full h-full relative z-[100] rounded-lg bg-transparent overflow-visible"
+      className="w-full h-full relative z-100 rounded-lg bg-transparent overflow-visible"
       ref={containerRef}
     >
       {items.map((url, i) => (
         <div
-          className="content__img w-[190px] aspect-[1.1] rounded-[15px] absolute top-0 left-0 opacity-0 overflow-hidden [will-change:transform,filter]"
+          className="content__img w-[190px] aspect-[1.1] rounded-[15px] absolute top-0 left-0 opacity-0 overflow-hidden will-change-[transform,filter]"
           key={i}
         >
           <div

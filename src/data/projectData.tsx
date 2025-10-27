@@ -1,7 +1,3 @@
-// data/projectsData.ts
-
-import type { ReactNode } from "react";
-
 export type ProjectType =
   | "Website"
   | "Mobile"

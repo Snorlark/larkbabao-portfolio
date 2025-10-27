@@ -1,4 +1,3 @@
-import ImageTrail from "../components/ImageTrail";
 import FadeContent from "../components/FadeContent";
 import JourneyTimeline from "../components/JourneyTimeline";
 

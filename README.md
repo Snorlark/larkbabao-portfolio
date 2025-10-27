@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Snorlark/larkbabao-portfolio">
-    <img src="public/logo.png" alt="Logo" width="80" height="80">
+    <img src="public/logo.png" alt="Logo" width="150" height="auto">
   </a>
 
   <h1 align="center">Lark Babao's Portfolio</h1>
