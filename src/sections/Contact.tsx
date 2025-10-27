@@ -2,6 +2,7 @@
 
 import Button from "../components/Button";
 import FadeContent from "../components/FadeContent";
+import DotGrid from "../components/DotGrid";
 
 const Contact: React.FC<{ isFixedBackground?: boolean }> = ({
   isFixedBackground = false,
@@ -16,8 +17,32 @@ const Contact: React.FC<{ isFixedBackground?: boolean }> = ({
                    px-4 md:px-0 rounded-t-4xl my-4"
         style={{ minHeight: "80vh" }} // Ensures enough height for content
       >
+        {/* DotGrid Background */}
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            zIndex: 0,
+          }}
+        >
+          <DotGrid
+            dotSize={5}
+            gap={20}
+            baseColor="#44413c"
+            activeColor="#fdf9e7"
+            proximity={200}
+            shockRadius={10}
+            shockStrength={5}
+            resistance={750}
+            returnDuration={1.5}
+          />
+        </div>
+
         {/* All content must now be placed inside this fixed section */}
-        <div className="mt-15 max-w-4xl w-full">
+        <div className="mt-15 max-w-4xl w-full relative z-10">
           <FadeContent
             blur={true}
             duration={800}
