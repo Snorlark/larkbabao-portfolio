@@ -1,21 +1,26 @@
 import React, { type ReactNode, useRef, useEffect, useCallback } from "react";
-import { gsap } from "gsap"; // Import GSAP
+import { gsap } from "gsap";
 
 // Define the shape of the props this component expects
 interface ButtonProps {
   children: ReactNode;
   isArrow: boolean;
   href: string;
+  isInverted?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, isArrow, href }) => {
+const Button: React.FC<ButtonProps> = ({
+  children,
+  isArrow,
+  href,
+  isInverted = false,
+}) => {
   const buttonRef = useRef<HTMLAnchorElement>(null);
   const flairRef = useRef<HTMLDivElement>(null);
 
   const ArrowIcon = (
     <svg
-      // Added a fixed width/height class to prevent the icon from becoming too large
-      className="w-10 h-auto "
+      className="w-10 h-auto"
       viewBox="0 0 59 22"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +34,7 @@ const Button: React.FC<ButtonProps> = ({ children, isArrow, href }) => {
 
   const LinkIcon = (
     <svg
-      className="w-8 h-auto" // Added a fixed width/height class
+      className="w-8 h-auto"
       viewBox="0 0 44 44"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -120,6 +125,29 @@ const Button: React.FC<ButtonProps> = ({ children, isArrow, href }) => {
     };
   }, [getXY]);
 
+  // 💡 CONDITIONAL STYLING LOGIC: Determine base and hover classes based on isInverted
+  // Base: Text, Background, Border
+  const baseTextColor = isInverted
+    ? "text-[var(--clr-bg)]"
+    : "text-[var(--clr-text)]";
+  const baseBgColor = isInverted
+    ? "bg-[var(--clr-text)]"
+    : "bg-[var(--clr-bg)]";
+  const baseBorderColor = isInverted
+    ? "border-[var(--clr-bg)]"
+    : "border-[var(--clr-text)]"; // Border usually stays the primary dark color
+
+  // Hover: Text, Background, Focus Ring
+  const hoverTextColor = isInverted
+    ? "hover:text-[var(--clr-text)]"
+    : "hover:text-[var(--clr-bg)]";
+  const hoverBgColor = isInverted
+    ? "hover:bg-[var(--clr-bg)]"
+    : "hover:bg-[var(--clr-text)]";
+  const focusRingColor = "focus:ring-[var(--clr-text)]";
+
+  const flairColor = isInverted ? "var(--clr-bg)" : "var(--clr-text)";
+
   // --- Rendered Component ---
   return (
     <a
@@ -127,27 +155,36 @@ const Button: React.FC<ButtonProps> = ({ children, isArrow, href }) => {
       href={href}
       target={href.startsWith("#") ? "_self" : "_blank"}
       rel={href.startsWith("#") ? undefined : "noopener noreferrer"}
-      className="
+      className={`
         relative overflow-hidden inline-flex items-center justify-center 
         rounded-full cursor-pointer 
-        text-normal font-medium tracking-widest text-sm 
+        font-medium tracking-widest text-sm 
         transition
-        px-6 py-6 border border-[var(--clr-text)] 
+        px-6 py-6 border 
         
+        /* BASE COLORS */
+        ${baseTextColor} 
+        ${baseBgColor} 
+        ${baseBorderColor}
 
-        text-[var(--clr-text)] 
-        hover:text-[var(--clr-bg)] 
-        hover:bg-(--clr-text) 
-        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-(--clr-text)
+        /* HOVER COLORS & FOCUS RING (Fixed syntax) */
+        ${hoverTextColor}
+        ${hoverBgColor} 
+
+        focus:outline-none focus:ring-2 focus:ring-offset-2 ${focusRingColor}
         
-        /* This class name corresponds to the original CSS selector */
         button--stroke
-      "
+      `}
       style={{ fontFamily: "var(--font-secondary)" }}
     >
-      {/* Flair Element (Reflected in GSAP logic) */}
-      <div ref={flairRef} className="button__flair">
-        {/* The ::before style is replicated using a dedicated element */}
+      {/* Flair Element */}
+      <div
+        ref={flairRef}
+        className="button__flair"
+        // Override the CSS variable used by .button__flair-before
+        style={{ "--color-surface-white": flairColor } as React.CSSProperties}
+      >
+        {/* The ::before element will now use this updated variable */}
         <div className="button__flair-before"></div>
       </div>
 

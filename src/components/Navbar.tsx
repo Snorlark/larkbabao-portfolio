@@ -6,7 +6,6 @@ const SECTIONS_CONFIG = [
   { label: "ABOUT", href: "#about", id: "about" },
   { label: "PROJECTS", href: "#projects", id: "projects" },
   { label: "JOURNEY", href: "#journey", id: "journey" },
-  { label: "CONTACT", href: "#contact", id: "contact" },
 ];
 
 function Navbar() {
@@ -120,12 +119,12 @@ function Navbar() {
     const buttonRef = useRef(null);
     const [buttonContent, setButtonContent] =
       useState<React.ReactElement | null>(null);
-    const isVisible = activeSection !== "hero";
+    const isVisible = true;
 
     // Determine the text, link, and content based on the active section
     const getButtonConfig = (sectionId: string) => {
-      let text = "CHECK MY CV";
-      let href = "https://babao-lark-resume.tiiny.site/";
+      let text = "CONTACT ME";
+      let href = "mailto:larksigmuondbabao@gmail.com";
       let icon = (
         <svg
           viewBox="0 0 44 44"
@@ -143,6 +142,12 @@ function Navbar() {
           />
         </svg>
       );
+
+      if (sectionId === "about") {
+        text = "CHECK MY CV";
+        href = "https://babao-lark-resume.tiiny.site/";
+        // Optional: Change icon to a GitHub logo or file icon if desired
+      }
 
       if (sectionId === "projects") {
         text = "CHECK MY GITHUB";
@@ -228,7 +233,7 @@ function Navbar() {
           <img
             src="/logo.png"
             alt="Logo"
-            className="object-contain w-10 h-10 transition-transform hover:scale-120 focus:scale-120"
+            className="object-contain w-12 h-auto transition-transform hover:scale-110 focus:scale-110"
           />
         </a>
 

@@ -75,7 +75,7 @@ const Hero: React.FC = () => {
   ];
 
   return (
-    <section className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto py-10 px-4 md:px-0">
+    <section className=" flex flex-col items-center justify-center w-full max-w-4xl mx-auto py-10 px-4 md:px-0">
       {/* 1. TOP FADE-IN CONTENT (Image and Location) */}
       <FadeContent
         blur={true}
