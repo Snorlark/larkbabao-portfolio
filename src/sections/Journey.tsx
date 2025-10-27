@@ -5,7 +5,7 @@ const Journey: React.FC = () => {
   return (
     <section
       id="journey"
-      className="relative flex flex-col items-center justify-center w-full mx-auto py-10 px-4 md:px-0 bg-[var(--clr-bg-accent)] rounded-4xl"
+      className="relative flex flex-col items-center justify-center w-full pb-30 mx-auto py-10 px-4 md:px-0 bg-[var(--clr-bg-accent)] rounded-4xl"
     >
       <div className="max-w-4xl mt-8 w-full">
         <FadeContent
