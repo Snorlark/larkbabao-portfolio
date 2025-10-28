@@ -2,75 +2,31 @@ import React, { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 
 // ====================================================================
-// Mock Data (Kept the same)
+// Data Import
 // ====================================================================
-type JourneyItem = {
-  id: string;
-  sequence: string;
-  title: string;
-  subtitle: string;
-  link?: string;
-  imageTrailUrls: string[]; // URLs for the ImageTrail
-};
-
-const JOURNEY_ITEMS: JourneyItem[] = [
-  {
-    id: "1",
-    sequence: "01",
-    title: "CCITEACH TERM 1",
-    subtitle: "The Fundamentals of Programming and Data Structure",
-    link: "#",
-    imageTrailUrls: [
-      "projects/maize-watch-web.png",
-      "projects/maize-watch-mobile.png",
-      "projects/refurnish.png",
-    ],
-  },
-  {
-    id: "2",
-    sequence: "02",
-    title: "GDSC LEADERSHIP",
-    subtitle: "Led and Managed Projects at GDSC NU Manila",
-    link: "#",
-    imageTrailUrls: [
-      "projects/maize-watch-web.png",
-      "projects/maize-watch-mobile.png",
-      "projects/refurnish.png",
-    ],
-  },
-  {
-    id: "3",
-    sequence: "03",
-    title: "MAIZE WATCH DEVELOPMENT",
-    subtitle: "Engineering the IoT & Analytics Platform",
-    link: "#",
-    imageTrailUrls: [
-      "projects/maize-watch-web.png",
-      "projects/maize-watch-mobile.png",
-      "projects/refurnish.png",
-    ],
-  },
-  {
-    id: "4",
-    sequence: "04",
-    title: "WEB DEV FREELANCING",
-    subtitle: "Delivered Responsive Sites for Local Businesses",
-    link: "#",
-    imageTrailUrls: [
-      "projects/maize-watch-web.png",
-      "projects/maize-watch-mobile.png",
-      "projects/refurnish.png",
-    ],
-  },
-];
+// 💡 IMPORTANT: Assuming your file structure looks like:
+// src/components/JourneyTimeline.tsx
+// src/data/journeyData.tsx
+import { JOURNEY_ITEMS, type JourneyItem } from "../data/journeyData";
 
 // ====================================================================
-// ImageTrail Component (Now locally rendered and using relative coordinates)
+// Type Definition for Ignore Area
+// ====================================================================
+type IgnoreArea = {
+  left: number;
+  top: number;
+  right: number;
+  bottom: number;
+} | null;
+
+// ====================================================================
+// ImageTrail Component (MODIFIED to accept ignoreArea)
 // ====================================================================
 const ImageTrail: React.FC<{
   items: string[];
   containerRef: React.RefObject<HTMLDivElement | null>;
-}> = ({ items, containerRef }) => {
+  ignoreArea: IgnoreArea; // 💡 NEW PROP
+}> = ({ items, containerRef, ignoreArea }) => {
   const [images, setImages] = useState<
     Array<{ url: string; x: number; y: number; id: number }>
   >([]);
@@ -87,48 +43,64 @@ const ImageTrail: React.FC<{
     const handleMouseMove = (e: MouseEvent) => {
       const activeCardRect = containerRef.current!.getBoundingClientRect();
 
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+
       // 1. BOUNDARY CHECK: Ensure the mouse is inside the card
       const isInsideCard =
-        e.clientX >= activeCardRect.left &&
-        e.clientX <= activeCardRect.right &&
-        e.clientY >= activeCardRect.top &&
-        e.clientY <= activeCardRect.bottom;
+        mouseX >= activeCardRect.left &&
+        mouseX <= activeCardRect.right &&
+        mouseY >= activeCardRect.top &&
+        mouseY <= activeCardRect.bottom;
 
       if (!isInsideCard) return;
+
+      const relativeX = mouseX - activeCardRect.left;
+      const relativeY = mouseY - activeCardRect.top;
+
+      // 💡 NEW CHECK: Ignore the mouse movement if it's over the button area
+      if (ignoreArea) {
+        const isOverButton =
+          relativeX >= ignoreArea.left &&
+          relativeX <= ignoreArea.right &&
+          relativeY >= ignoreArea.top &&
+          relativeY <= ignoreArea.bottom;
+
+        if (isOverButton) return;
+      }
 
       // 2. TIMING AND DISTANCE CHECK
       const now = Date.now();
       if (now - lastTime < minInterval) return;
       lastTime = now;
 
-      const dx = e.clientX - lastPosition.current.x;
-      const dy = e.clientY - lastPosition.current.y;
+      const dx = mouseX - lastPosition.current.x;
+      const dy = mouseY - lastPosition.current.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
 
       if (distance > minDistance) {
         const randomImage = items[Math.floor(Math.random() * items.length)];
 
-        // 💡 CRITICAL FIX: Calculate position RELATIVE to the card's top-left corner
+        // Calculate position RELATIVE to the card's top-left corner
         const newImage = {
           url: randomImage,
-          x: e.clientX - activeCardRect.left,
-          y: e.clientY - activeCardRect.top,
+          x: relativeX, // Use the pre-calculated relative X
+          y: relativeY, // Use the pre-calculated relative Y
           id: nextId.current++,
         };
 
         setImages((prev) => [...prev.slice(-4), newImage]);
-        lastPosition.current = { x: e.clientX, y: e.clientY };
+        lastPosition.current = { x: mouseX, y: mouseY };
       }
     };
 
-    // We still listen to the document for mousemove, but only trigger if inside the card
     document.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
       setImages([]);
     };
-  }, [items, containerRef]);
+  }, [items, containerRef, ignoreArea]); // Added ignoreArea to dependencies
 
   if (items.length === 0) return null;
 
@@ -164,10 +136,10 @@ const ImageTrail: React.FC<{
   );
 };
 
+// ---
 // ====================================================================
-// JourneyCard Component (Refactored to handle its own hover and rendering)
+// JourneyCard Component (MODIFIED to calculate and pass button area)
 // ====================================================================
-// The onHover/onLeave props are removed since the image trail is now local
 const JourneyCard: React.FC<{
   item: JourneyItem;
   isLast: boolean;
@@ -175,6 +147,28 @@ const JourneyCard: React.FC<{
   const [isHovered, setIsHovered] = useState(false);
   const [imageTrailKey, setImageTrailKey] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
+  // 💡 NEW REFS AND STATE for button area calculation
+  const buttonRef = useRef<HTMLAnchorElement>(null);
+  const [buttonIgnoreArea, setButtonIgnoreArea] = useState<IgnoreArea>(null);
+
+  // 💡 EFFECT to calculate button position on mount
+  useEffect(() => {
+    // Only calculate if the button link exists, and both refs are available
+    if (item.link && cardRef.current && buttonRef.current) {
+      const cardRect = cardRef.current.getBoundingClientRect();
+      const buttonRect = buttonRef.current.getBoundingClientRect();
+
+      // Calculate coordinates relative to the card's top-left corner
+      setButtonIgnoreArea({
+        left: buttonRect.left - cardRect.left,
+        top: buttonRect.top - cardRect.top,
+        right: buttonRect.right - cardRect.left,
+        bottom: buttonRect.bottom - cardRect.top,
+      });
+    } else {
+      setButtonIgnoreArea(null);
+    }
+  }, [item.link]); // Dependency on item.link ensures it runs when the card is rendered
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -194,34 +188,43 @@ const JourneyCard: React.FC<{
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {/* 💡 Local ImageTrail Container (position: absolute inside card) */}
+        {/* 💡 Local ImageTrail Container */}
         {isHovered && item.imageTrailUrls.length > 0 && (
-          // This parent div defines the absolute coordinate system for the images
-          <div className="absolute inset-0 z-1000 rounded-xl">
+          // pointer-events-none fixes the issue where the overlay prevents clicking the button
+          <div className="absolute inset-0 z-1000 rounded-xl pointer-events-none">
             <ImageTrail
               key={imageTrailKey} // Key resets the component on each new hover
               items={item.imageTrailUrls}
               containerRef={cardRef} // Pass the card's ref for boundary checks
+              ignoreArea={buttonIgnoreArea} // 💡 Pass the calculated button area
             />
           </div>
         )}
 
         {/* Content (Z-20 keeps content above the image trail Z-10) */}
-        <div className="flex items-center space-x-20 relative z-20">
+        <div className="flex items-center space-x-20 relative z-20 mr-20">
           <span
-            className="text-5xl font-bold text-[var(--clr-text)] tracking-tight"
+            className="text-6xl font-bold text-[var(--clr-text)]/90 tracking-tight"
             style={{ fontFamily: "Montserrat, sans-serif" }}
           >
             {item.sequence}
           </span>
           <div className="flex flex-col">
-            <h3 className="text-2xl font-bold text-[var(--clr-text)] uppercase">
+            {/* 💡 FIXED: Tailwind class syntax from bg-(--clr-bg) to bg-[var(--clr-bg)] */}
+            <div className="px-2 py-2 rounded-full bg-[var(--clr-bg)] w-fit">
+              <p
+                className="text-xs font-medium text-[var(--clr-text)]/70 uppercase tracking-wider"
+                style={{ fontFamily: "var(--font-secondary)" }}
+              >
+                {item.date}
+              </p>
+            </div>
+
+            <h1 className="text-2xl font-semibold text-[var(--clr-text)] mt-3 mb-3 tracking-tight leading-tight">
               {item.title}
-            </h3>
-            <p
-              className="text-xs font-normal text-[var(--clr-text)]/70 uppercase tracking-wider"
-              style={{ fontFamily: "var(--font-secondary)" }}
-            >
+            </h1>
+            {/* 💡 FIXED: Tailwind class syntax from text-(--clr-text)/80 to text-[var(--clr-text)]/80 */}
+            <p className="text-base font-semibold text-[var(--clr-text)]/80 leading-tight">
               {item.subtitle}
             </p>
           </div>
@@ -230,10 +233,12 @@ const JourneyCard: React.FC<{
         {/* Action Button */}
         {item.link && (
           <a
+            ref={buttonRef} // 💡 ATTACH THE REF to measure its position
             href={item.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 flex flex-shrink-0 items-center justify-center rounded-full transition-all duration-300 relative z-20"
+            // transition-all added for smooth effect
+            className="w-10 h-10 flex flex-shrink-0 items-center justify-center rounded-full hover:scale-120 transition-all duration-300 relative z-20"
             style={{ backgroundColor: "var(--clr-text)" }}
             aria-label={`View details for ${item.title}`}
           >
@@ -253,8 +258,9 @@ const JourneyCard: React.FC<{
   );
 };
 
+// ---
 // ====================================================================
-// Main Timeline Component (Simplified as it no longer manages the image trail state)
+// Main Timeline Component
 // ====================================================================
 const JourneyTimeline: React.FC = () => {
   return (

@@ -29,12 +29,29 @@ const Journey: React.FC = () => {
               MANAGED
             </div>
           </div>
-          <p className="font-medium text-xl mb-20 text-[var(--clr-text)] max-w-xl">
+          <p className="font-medium text-center text-xl mb-20 text-[var(--clr-text)] max-w-xl">
             Highlights from my journey leading and building impactful projects
-            at <span className="italic font-bold">GDGOC-NU MANILA</span>
+            at{" "}
+            <span className="italic font-bold underline transition-all duration-300">
+              <a
+                href="https://gdg.community.dev/gdg-on-campus-national-university-manila-campus-manila-philippines/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                GDGOC-NU MANILA
+              </a>
+            </span>
           </p>
 
           <JourneyTimeline />
+
+          <p
+            // FIX: Corrected custom variable syntax
+            className="mt-20 text-sm tracking-widest uppercase text-(--clr-text)/50"
+            style={{ fontFamily: "var(--font-secondary)" }}
+          >
+            HERE'S TO WHAT'S NEXT, AND EVERYTHING BEYOND...
+          </p>
         </FadeContent>
       </div>
     </section>

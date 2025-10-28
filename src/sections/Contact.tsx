@@ -65,13 +65,17 @@ const Contact: React.FC<{ isFixedBackground?: boolean }> = ({
                 TO <span className="italic font-medium">EXECUTION</span>
               </div>
             </div>
-            <p className="font-medium text-xl mb-20 text-[var(--clr-bg)] max-w-xl">
+            <p className="font-medium text-xl mb-8 text-[var(--clr-bg)] max-w-xl">
               Open to{" "}
               <span className="italic font-bold">
                 {" "}
                 collaborations, tech talks, internships,{" "}
               </span>{" "}
-              and exciting opportunities in web & mobile development.
+              and exciting opportunities in web & mobile development.{" "}
+            </p>
+
+            <p className="italic mb-3 text-(--clr-bg)/60 font-medium">
+              (larksigmuondbabao@gmail.com)
             </p>
 
             <Button
@@ -81,7 +85,7 @@ const Contact: React.FC<{ isFixedBackground?: boolean }> = ({
               href="mailto:larksigmuondbabao@gmail.com"
             />
 
-            <div className="flex justify-center items-center gap-6 mt-8">
+            <div className="flex justify-center items-center gap-6 mt-10">
               <a
                 href="https://www.facebook.com/larksigmuondbabao/"
                 target="_blank"

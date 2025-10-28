@@ -166,7 +166,6 @@ const Hero: React.FC = () => {
         {/* Current Tech Stack */}
         <div className="flex flex-col justify-center items-center w-full">
           <p
-            // FIX: Corrected custom variable syntax
             className="mb-5 text-sm tracking-widest uppercase text-(--clr-text)/50"
             style={{ fontFamily: "var(--font-secondary)" }}
           >
