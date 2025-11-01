@@ -69,7 +69,7 @@ export const ALL_PROJECTS: ProjectData[] = [
       "Tailwind CSS",
       "Python",
     ],
-    liveLink: "https://maize-watch.com",
+    liveLink: "https://maize-watch.vercel.app",
     githubLink: "https://github.com/Snorlark/Maize-Watch",
   },
   {
